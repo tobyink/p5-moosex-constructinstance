@@ -1,0 +1,12 @@
+# This file provides instructions for packaging.
+
+`MooseX-ConstructInstance`
+	perl_version_from m`MooseX::ConstructInstance`;
+	version_from      m`MooseX::ConstructInstance`;
+	readme_from       m`MooseX::ConstructInstance`;
+	test_requires     p`Test::More 0.61`;
+	requires          p`Moo::Role`;
+	recommends        p`Moose 2.00`;
+	recommends        p`MooseX::RelatedClasses`;
+.
+
