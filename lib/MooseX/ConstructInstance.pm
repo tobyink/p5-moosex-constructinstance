@@ -48,10 +48,10 @@ MooseX::ConstructInstance - small wrapper method for instantiating helper object
 
 This role consists of a single method:
 
-	sub construct_instance {
-		my (undef, $class, @args) = @_;
-		$class->new(@args);
-	}
+   sub construct_instance {
+      my (undef, $class, @args) = @_;
+      $class->new(@args);
+   }
 
 =begin trustme
 
@@ -63,47 +63,47 @@ This role consists of a single method:
 
 Normally you would build an LWP::UserAgent something like this:
 
-	sub _build_ua {
-		my $self = shift;
-		LWP::UserAgent->new(...);
-	}
+   sub _build_ua {
+      my $self = shift;
+      LWP::UserAgent->new(...);
+   }
 
 Following the principles of dependency injection, you may prefer not to
 hard-code the class name (see also L<MooseX::RelatedClasses>):
 
-	has ua_class => (is => 'ro', default => 'LWP::UserAgent');
-	
-	sub _build_ua {
-		my $self = shift;
-		$self->ua_class->new(...);
-	}
+   has ua_class => (is => 'ro', default => 'LWP::UserAgent');
+   
+   sub _build_ua {
+      my $self = shift;
+      $self->ua_class->new(...);
+   }
 
 This module allows you to take it to a further level of abstraction:
 
-	has ua_class => (is => 'ro', default => 'LWP::UserAgent');
-	
-	sub _build_ua {
-		my $self = shift;
-		$self->construct_instance($self->ua_class, ...);
-	}
+   has ua_class => (is => 'ro', default => 'LWP::UserAgent');
+   
+   sub _build_ua {
+      my $self = shift;
+      $self->construct_instance($self->ua_class, ...);
+   }
 
 Why? What benefit do we accrue from constructing all our helper objects via
 a seemingly redundant object method call? How about this:
 
-	{
-		package Authentication;
-		use Moose::Role;
-		around construct_instance => sub {
-			my ($orig, $self, $class, @args) = @_;
-			my $instance = $self->$orig($class, @args);
-			if ($instance->DOES('LWP::UserAgent')) {
-				$instance->credentials('', '', 'username', 'password');
-			}
-			return $instance;
-		};
-	}
-	
-	Moose::Util::ensure_all_roles($something, 'Authentication');
+   {
+      package Authentication;
+      use Moose::Role;
+      around construct_instance => sub {
+         my ($orig, $self, $class, @args) = @_;
+         my $instance = $self->$orig($class, @args);
+         if ($instance->DOES('LWP::UserAgent')) {
+            $instance->credentials('', '', 'username', 'password');
+         }
+         return $instance;
+      };
+   }
+   
+   Moose::Util::ensure_all_roles($something, 'Authentication');
 
 Now whenever C<< $something >> constructs an LWP::UserAgent object, it will
 automatically have authentication credentials supplied.
@@ -128,20 +128,20 @@ them.
 Despite the name, MooseX::ConstructInstance is actually a L<Moo::Role>.
 You can apply MooseX::ConstructInstance to Moose classes using:
 
-	package MyClass;
-	use Moose;
-	with qw( MooseX::ConstructInstance );
+   package MyClass;
+   use Moose;
+   with qw( MooseX::ConstructInstance );
 
 You can apply it to Moo classes using:
 
-	package MyClass;
-	use Moo;
-	with qw( MooseX::ConstructInstance );
+   package MyClass;
+   use Moo;
+   with qw( MooseX::ConstructInstance );
 
 You can apply it to other classes using:
 
-	package MyClass;
-	use MooseX::ConstructInstance -with;
+   package MyClass;
+   use MooseX::ConstructInstance -with;
 
 =head1 BUGS
 
