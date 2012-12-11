@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
+use if ($] < 5.010), 'UNIVERSAL::DOES';
 
 {
 	package Local::Other;

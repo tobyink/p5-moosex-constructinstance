@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 use Test::More;
+use if ($] < 5.010), 'UNIVERSAL::DOES';
 
 BEGIN {
 	eval q{ require Moose; 1 } or plan skip_all => 'requires Moose';
