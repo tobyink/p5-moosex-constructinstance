@@ -24,6 +24,10 @@ use if ($] < 5.010), 'UNIVERSAL::DOES';
 	package Local::Other;
 	use Moo;
 	has param => (is => 'rw');
+	sub new_from_blah {
+		my $class = shift;
+		$class->new(param => 'blah');
+	}
 }
 
 {
@@ -34,6 +38,11 @@ use if ($] < 5.010), 'UNIVERSAL::DOES';
 	sub make_other {
 		my $self = shift;
 		$self->construct_instance('Local::Other', param => $self->xxx);
+	}
+	sub make_blah {
+		my $self = shift;
+		local $MooseX::ConstructInstance::CONSTRUCTOR = 'new_from_blah';
+		$self->construct_instance('Local::Other');
 	}
 }
 
@@ -62,6 +71,12 @@ ok !Local::Class1->can('import');
 	my $obj = Local::Class2->new(xxx => 3);
 	my $oth = $obj->make_other;
 	is($oth->param, 2);
+}
+
+{
+	my $obj = Local::Class2->new(xxx => 3);
+	my $oth = $obj->make_blah;
+	is($oth->param, 'blah');
 }
 
 done_testing;
