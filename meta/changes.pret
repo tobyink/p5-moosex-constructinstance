@@ -11,3 +11,9 @@
 		item "use UNIVERSAL::DOES if Perl < 5.010."^^Packaging;
 	].
 
+`MooseX-ConstructInstance 0.003 cpan:TOBYINK`
+	issued  2013-01-07;
+	changeset [
+		item "Add FAQ to pod; initially covering $CONSTRUCTOR package variable."^^Documentation;
+	].
+
