@@ -15,5 +15,6 @@
 	issued  2013-01-07;
 	changeset [
 		item "Add FAQ to pod; initially covering $CONSTRUCTOR package variable."^^Documentation;
+		item "Add examples/basic.pl as an example script."^^Documentation;
 	].
 
