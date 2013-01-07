@@ -1,6 +1,9 @@
 package MooseX::ConstructInstance;
 
 use 5.008;
+use strict;
+use warnings;
+
 use Moo::Role;
 no warnings qw( void once uninitialized );
 
@@ -23,7 +26,7 @@ our @ISA = do {
 
 BEGIN {
 	$MooseX::ConstructInstance::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::ConstructInstance::VERSION   = '0.002';
+	$MooseX::ConstructInstance::VERSION   = '0.003';
 }
 
 # If push comes to shove, you can locally change the name
@@ -143,6 +146,20 @@ You can apply it to other classes using:
    package MyClass;
    use MooseX::ConstructInstance -with;
 
+=head1 FAQ
+
+=head2 What if I need to use a constructor which is not called C<new>?
+
+Aye; there's the rub.
+
+For now, this works, though it's not an especially elegant solution...
+
+   sub _build_document {
+      my $self = shift;
+      local $MooseX::ConstructInstance::CONSTRUCTOR = 'new_from_file';
+      $self->construct_instance($self->document_class, ...);
+   }
+
 =head1 BUGS
 
 Please report any bugs to
@@ -159,7 +176,7 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT AND LICENCE
 
-This software is copyright (c) 2012 by Toby Inkster.
+This software is copyright (c) 2012-2013 by Toby Inkster.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
