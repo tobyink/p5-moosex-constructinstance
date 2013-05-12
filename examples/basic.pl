@@ -75,7 +75,7 @@ the same terms as the Perl 5 programming language system itself.
 }
 
 {
-	package MySecret;	
+	package MySecret;
 	use Moo::Role;
 	
 	around construct_instance => sub {
