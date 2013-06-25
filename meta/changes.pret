@@ -18,3 +18,9 @@
 		item "Add examples/basic.pl as an example script."^^Documentation;
 	].
 
+`MooseX-ConstructInstance 0.004 cpan:TOBYINK`
+	issued  2013-06-25;
+	changeset [
+		item "New Moo builds 'new' methods for Moo-based subclasses of non-Moo parents, even if the subclass defines no attributes. Fix t/04homebrew.t to cope with this."^^Update;
+	].
+
