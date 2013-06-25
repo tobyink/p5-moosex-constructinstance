@@ -53,6 +53,8 @@ use if ($] < 5.010), 'UNIVERSAL::DOES';
 	package Local::Class2;
 	use Moo;
 	extends qw( Local::Class1 );
+	sub BUILDARGS        { +{} }
+	sub FOREIGNBUILDARGS { shift; @_ }
 	around construct_instance => sub {
 		my ($orig, $self, $class, @args) = @_;
 		my $inst = $self->$orig($class, @args);
