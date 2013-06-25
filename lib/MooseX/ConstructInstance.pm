@@ -43,6 +43,12 @@ sub construct_instance {
 
 __END__
 
+=pod
+
+=encoding utf8
+
+=for stopwords backlinks
+
 =head1 NAME
 
 MooseX::ConstructInstance - small wrapper method for instantiating helper objects
