@@ -24,3 +24,12 @@
 		item "New Moo builds 'new' methods for Moo-based subclasses of non-Moo parents, even if the subclass defines no attributes. Fix t/04homebrew.t to cope with this."^^Update;
 	].
 
+`MooseX-ConstructInstance 0.005 cpan:TOBYINK`
+	issued  2013-06-30;
+	changeset [
+		item [
+			a dcs:Packaging, dcs:Bugfix;
+			label "MooseX-ConstructInstance-0.004 bundled a tarball of MooseX-ConstructInstance-0.004.";
+		];
+	].
+

@@ -26,7 +26,7 @@ our @ISA = do {
 
 BEGIN {
 	$MooseX::ConstructInstance::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::ConstructInstance::VERSION   = '0.004';
+	$MooseX::ConstructInstance::VERSION   = '0.005';
 }
 
 # If push comes to shove, you can locally change the name
