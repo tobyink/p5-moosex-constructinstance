@@ -34,3 +34,11 @@
 		];
 	].
 
+`MooseX-ConstructInstance 0.006 cpan:TOBYINK`
+	issued  2014-06-03;
+	changeset [
+		item "use Dist::Inkt."^^Packaging;
+		item "Allow $class to be a coderef, and DWIM."^^Change;
+		item "Check $self->DOES('MooseX::ConstructInstance') works."^^Tests;
+	].
+
