@@ -81,6 +81,8 @@ This role consists of a single method:
       $class->new(@args);
    }
 
+(Actually, since 0.006, it's a little more complex.)
+
 =begin trustme
 
 =item construct_instance
@@ -170,6 +172,20 @@ You can apply it to other classes using:
 
    package MyClass;
    use MooseX::ConstructInstance -with;
+
+As of version 0.006 of MooseX::ConstructInstance, C<< $class >> may be
+a coderef or a blessed object overloading C<< &{} >>. The
+C<construct_instance> method acts a bit like this:
+
+   sub construct_instance {
+      my (undef, $class, @args) = @_;
+      if ( is_codelike($class) ) {
+         return $class->(@args);
+      }
+      else {
+         $class->new(@args);
+      }
+   }
 
 =head1 FAQ
 
