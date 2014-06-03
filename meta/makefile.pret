@@ -1,12 +1,9 @@
 # This file provides instructions for packaging.
 
 `MooseX-ConstructInstance`
-	perl_version_from m`MooseX::ConstructInstance`;
-	version_from      m`MooseX::ConstructInstance`;
-	readme_from       m`MooseX::ConstructInstance`;
-	test_requires     p`Test::More 0.61`;
-	requires          p`Moo::Role`;
-	recommends        p`Moose 2.00`;
-	recommends        p`MooseX::RelatedClasses`;
-.
+	deps:test-requirement    [ deps:on "Test::More 0.96"^^deps:CpanId ];
+	deps:runtime-requirement [ deps:on "perl 5.008"^^deps:CpanId ];
+	deps:runtime-requirement [ deps:on "Moo::Role"^^deps:CpanId ];
+	deps:runtime-suggestion  [ deps:on "Moose 2.0000"^^deps:CpanId ];
+	deps:runtime-suggestion  [ deps:on "MooseX::RelatedClasses"^^deps:CpanId ].
 
