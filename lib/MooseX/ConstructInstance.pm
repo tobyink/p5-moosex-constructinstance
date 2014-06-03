@@ -36,6 +36,25 @@ our $CONSTRUCTOR = 'new';
 
 sub construct_instance {
 	my (undef, $class, @args) = @_;
+	
+	if ( my $ref = ref($class) )
+	{
+		if ($ref ne 'CODE')
+		{
+			require overload;
+			require Scalar::Util;
+			require Carp;
+			
+			Carp::croak("Cannot construct instance from reference $class")
+				unless Scalar::Util::blessed($class);
+			
+			Carp::croak("Cannot construct instance from object $class")
+				unless overload::Method($class, '&{}');
+		}
+		
+		return $class->(@args);
+	}
+	
 	$class->$CONSTRUCTOR(@args);
 }
 
