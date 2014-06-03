@@ -69,6 +69,11 @@ ok(
 	'Local::Class1 did not accidentally consume an "import" method'
 );
 
+ok(
+	'Local::Class1'->DOES('MooseX::ConstructInstance'),
+	"Local::Class1->DOES(MooseX::ConstructInstance)",
+);
+
 {
 	my $obj = Local::Class1->new(3);
 	my $oth = $obj->make_other;
