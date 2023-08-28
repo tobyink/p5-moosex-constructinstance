@@ -61,7 +61,7 @@ use if ($] < 5.010), 'UNIVERSAL::DOES';
 
 can_ok('Local::Class1', 'construct_instance');
 ok(
-	!Local::Class1->can('import'),
+	!exists &Local::Class1::import,
 	'Local::Class1 did not accidentally consume an "import" method'
 );
 
